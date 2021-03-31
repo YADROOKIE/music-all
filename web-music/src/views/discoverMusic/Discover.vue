@@ -45,7 +45,7 @@ export default {
         {id:2,imageUrl:'http://10.20.57.123:8080/cea87eab-349b-452d-a5cb-2c3ae115bdbc.jpg'}
       ],
       hots:[],
-      prefix:'http://10.20.57.123:8080/'
+      prefix:'http://localhost:8080/'
     };
   },
   created() {

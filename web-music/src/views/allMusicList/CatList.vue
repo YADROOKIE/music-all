@@ -1,55 +1,34 @@
 <template>
-  <div>
-    <div class="box">
-      <div class="btnBox">
-        <el-button @click="showCategories"
-          >{{ cat }}<i class="el-icon-arrow-down"></i
-        ></el-button>
-      </div>
-      <div class="mainBox" v-show="isShowCategories">
-        <div class="top">全部歌单分类</div>
-        <div class="allCatBtn">
-          <el-button class="allCat">全部歌单</el-button>
-        </div>
+  <div style="padding-left:20%;padding-right:20%">
+    <el-table
+      :data="tableData"
+      stripe
+      style="width: 100%">
+      <el-table-column
+        prop="id"
+        label="ID"
+        width="180">
+      </el-table-column>
+      <el-table-column
+        prop="name"
+        label="歌单名称"
+        width="180">
+      </el-table-column>
+      <el-table-column
+        prop="date"
+        label="创建时间">
+      </el-table-column>
+      <el-table-column
+        fixed="right"
+        label="操作"
+        width="100">
+        <template slot-scope="scope">
+          <el-button @click="handleClick(scope.row)" type="text" size="small">查看</el-button>
+          <el-button type="text" size="small">编辑</el-button>
+        </template>
+      </el-table-column>
+    </el-table>
 
-        <div class="allCategories">
-          <div
-            class="classify"
-            v-for="(item, index1) in categories"
-            :key="index1"
-          >
-            <div class="left">
-              <span>{{ item }}</span>
-            </div>
-            <div class="right">
-              <el-button
-                v-for="(items, index2) in catlist"
-                :key="index2"
-                v-show="items.category === index1 - 0"
-                class="rightBtn"
-                @click="checkPlayLists(items.name)"
-              >
-                {{ items.name }}
-              </el-button>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- 歌单 -->
-    <RecommendMusic :recommendResource="recommendResource" />
-
-    <!-- 分页区域 -->
-    <el-pagination
-      background
-      layout="prev, pager, next"
-      @current-change="handleCurrentChange"
-      :current-page="currentPage"
-      :total="total - 0"
-      :page-size="50"
-    >
-    </el-pagination>
   </div>
 </template>
 
@@ -76,7 +55,24 @@ export default {
       currentPage: 1,
       offest: 1,
       total: "2500",
-      cat: "全部"
+      cat: "全部",
+      tableData: [{
+          date: '2016-05-02',
+          name: '王小虎',
+          id:1
+        }, {
+          date: '2016-05-04',
+          name: '王小虎',
+          id:2
+        }, {
+          date: '2016-05-01',
+          name: '王小虎',
+          id:3
+        }, {
+          date: '2016-05-03',
+          name: '王小虎',
+          id:4
+        }]
     };
   },
   created() {
@@ -92,6 +88,9 @@ export default {
     });
   },
   methods: {
+    handleClick(row) {
+        console.log(row);
+    },
     // 全部歌单分类下拉
     showCategories() {
       this.isShowCategories = !this.isShowCategories;

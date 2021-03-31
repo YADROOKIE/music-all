@@ -10,10 +10,12 @@
       </el-main>
     </el-container>
     <el-footer>
-      <audio ref="audio" controls style="width:75%">
-          您的浏览器不支持 audio 元素。
-      </audio>
-      <Player />
+      <div style="margin:0 auto;">
+          <audio  ref="audio" controls style="width:75%;">
+              您的浏览器不支持 audio 元素。
+          </audio>
+      </div>
+      
     </el-footer>
   </div>
 </template>

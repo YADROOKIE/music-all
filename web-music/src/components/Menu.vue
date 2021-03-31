@@ -19,22 +19,22 @@ export default {
           link: "/individuation",
           name: "热门推荐"
         },
+        { link: "/mv", name: "购票中心" },
         {
           link: "/allmusiclist",
-          name: "歌单"
+          name: "我的歌单"
         },
         {
           link: "/ranklist",
-          name: "排行榜"
+          name: "个人信息"
+        },
+        {
+          link: "/new-songs",
+          name: "我的订单"
         },
         {
           link: "/artist-list",
-          name: "歌手"
-        },
-        { link: "/mv", name: "MV" },
-        {
-          link: "/new-songs",
-          name: "最新音乐"
+          name: "浏览记录"
         }
       ]
     };
