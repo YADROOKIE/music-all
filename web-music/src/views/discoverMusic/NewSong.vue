@@ -12,15 +12,19 @@
       >
         <div class="number">{{ index + 1 }}</div>
         <div class="title">
-          <img :src="item.picUrl" alt="" />
+          <img :src="'http://localhost:8080/'+item.cover" alt="" />
         </div>
 
         <div class="mess">
-          <span class="itemName" @click="enterAlbum(item.song.album.id)">
-            {{ item.name }}
+          <span class="itemName" @click="enterAlbum(item.id)">
+            {{ item.musicName }}
           </span>
+          
           <div class="bottom">
-            <span
+            <span class="itemName" @click="enterAlbum(item.id)">
+            2333
+          </span>
+            <!-- <span
               v-for="(items, index1) in item.song.album.artists"
               :key="index1"
               class="artistsName"
@@ -30,7 +34,7 @@
               <span v-if="index1 - 0 != item.song.album.artists.length - 1"
                 >/</span
               >
-            </span>
+            </span> -->
           </div>
         </div>
       </div>
@@ -43,6 +47,7 @@
 import { indexMixin } from "../../components/PlayMusic";
 import {
   getNewSong,
+  getHotList,
   getMusicUrl,
   songDetail,
   getSongsDetail
@@ -58,8 +63,8 @@ export default {
   },
   mixins: [indexMixin],
   created() {
-    getNewSong().then(res => {
-      this.newsonglist = res.data.result;
+    getHotList().then(res => {
+      this.newsonglist = res.data.data.list
       console.log(this.newsonglist);
     });
   },

@@ -41,4 +41,16 @@ public class BaseUserServiceImpl extends ServiceImpl<BaseUserMapper, BaseUser> i
             return  false;
         }
     }
+
+    @Override
+    public BaseUser restLogin(BaseUser baseUser) {
+        QueryWrapper<BaseUser> wrapper = new QueryWrapper<>();
+        wrapper.eq("stu_no",baseUser.getStuNo());
+        BaseUser one = this.getOne(wrapper);
+        if (one==null){
+            return  null;
+        }
+        String encrypt = baseUser.getPassword();
+        return  one.getPassword().equals(encrypt) ? one : null;
+    }
 }

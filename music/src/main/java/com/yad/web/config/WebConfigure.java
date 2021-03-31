@@ -13,6 +13,7 @@ public class WebConfigure implements WebMvcConfigurer {
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         String basePath = new File("file").getAbsolutePath();
+        System.out.println(basePath+"basePath");
         String fileBasePath = "file:" + basePath + "/";
 
         registry.addResourceHandler("/**").

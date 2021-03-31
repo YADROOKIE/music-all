@@ -5,7 +5,7 @@
       <h4>热门歌曲</h4>
       <el-carousel :interval="4000" type="card">
         <el-carousel-item v-for="item in hots" :key="item.id" >
-          <img :src="'http://localhost:8080/'+item.cover" :alt="item.musicName" @click="play(item.filePath)" />
+          <img :src="prefix+item.cover" :alt="item.musicName" @click="play(item.filePath)" />
         </el-carousel-item>
       </el-carousel>
 
@@ -26,7 +26,7 @@
 
 
 <script>
-import { getPersonalized, banner ,getHotList } from "../../network/discover.js";
+import { getHotList } from "../../network/discover.js";
 import RecommendMusic from "./RMusicList.vue";
 import IndividuationMv from "./IndividuationMv.vue";
 import NewSong from "./NewSong.vue";
@@ -41,10 +41,11 @@ export default {
     return {
       recommendResource: [],
       banners: [
-        {id:1,imageUrl:'http://localhost:8080/38578335-806d-4917-a4fb-d011963b6598.jpeg'},
-        {id:2,imageUrl:'http://localhost:8080/cea87eab-349b-452d-a5cb-2c3ae115bdbc.jpg'}
+        {id:1,imageUrl:'http://10.20.57.123:8080/38578335-806d-4917-a4fb-d011963b6598.jpeg'},
+        {id:2,imageUrl:'http://10.20.57.123:8080/cea87eab-349b-452d-a5cb-2c3ae115bdbc.jpg'}
       ],
-      hots:[]
+      hots:[],
+      prefix:'http://10.20.57.123:8080/'
     };
   },
   created() {
@@ -53,19 +54,11 @@ export default {
       console.log(res)
       this.hots = res.data.data.list
     })
-    banner().then(res => {
-      this.banners = res.data.banners.slice(0, 6);
-    });
-
-    // 获取推荐歌单
-    getPersonalized().then(res => {
-      this.recommendResource = res.data.result;
-    });
   },
   methods: {
     play(filePath){
       console.log(filePath)
-      this.$emit("play",'http://localhost:8080/'+filePath)
+      this.$emit("play",this.prefix+filePath)
     }
   }
 };

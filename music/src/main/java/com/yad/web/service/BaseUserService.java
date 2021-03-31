@@ -16,4 +16,6 @@ public interface BaseUserService extends IService<BaseUser> {
     BaseUser login(UserLoginVo user);
 
     boolean register(BaseUser user);
+
+    BaseUser restLogin(BaseUser baseUser);
 }

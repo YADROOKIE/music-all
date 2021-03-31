@@ -1,29 +1,25 @@
 <template>
   <div id="app">
-    <tab></tab>
+    <bar></bar>
     <el-container class="box">
       <el-aside>
         <Menu></Menu>
       </el-aside>
       <el-main>
         <router-view v-on:play="play"></router-view>
-        <PlayList class="playList" />
-        <Lyric />
       </el-main>
     </el-container>
     <el-footer>
-    <audio controls>
-        <source src="http://localhost:8080/b917c6ab-333c-49cc-b19f-2b8df5f430fa.mp3" >
-        您的浏览器不支持 audio 元素。
-    </audio>
-    <button @click="pause">暂停</button>
+      <audio ref="audio" controls style="width:75%">
+          您的浏览器不支持 audio 元素。
+      </audio>
       <Player />
     </el-footer>
   </div>
 </template>
 
 <script>
-import Tab from "./components/Header";
+import Bar from "./components/Header";
 import Menu from "./components/Menu";
 import Player from "./components/Player";
 import PlayList from "./components/PlayList";
@@ -34,12 +30,13 @@ import DicoverMusic from "./views/discoverMusic/Discover";
 export default {
   name: "App",
   components: {
-    Tab,
+    Bar,
     Menu,
     DicoverMusic,
     Player,
     PlayList,
     Lyric
+
   },
   data(){
     return{
@@ -52,14 +49,9 @@ export default {
 
   methods:{
     play(e){
-      console.log(e)
-        this.audio = new Audio();
-      this.audio.src = e;
-      
-      var playPromise = this.audio.play();
-    },
-    pause(){
-      this.audio.pause()
+      // console.log('play')
+      this.$refs.audio.src = e
+      this.$refs.audio.play()
     }
   }
   

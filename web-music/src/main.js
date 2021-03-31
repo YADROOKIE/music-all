@@ -5,12 +5,14 @@ import './assets/fonts/iconfont.css'
 import './assets/css/global.css'
 import store from './store/index.js'
 
-
+import ElementUI from 'element-ui';
+import 'element-ui/lib/theme-chalk/index.css';
 
 
 import './plugins/element.js'
 
 
+Vue.use(ElementUI)
 Vue.prototype.$bus = new Vue()
 Vue.config.productionTip = false
 
