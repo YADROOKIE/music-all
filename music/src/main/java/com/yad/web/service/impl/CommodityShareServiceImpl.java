@@ -3,17 +3,21 @@ package com.yad.web.service.impl;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.yad.web.entity.CommodityPicture;
 import com.yad.web.entity.CommodityShare;
+import com.yad.web.entity.UcOrder;
 import com.yad.web.entity.vo.CommodityVo;
 import com.yad.web.mapper.CommodityShareMapper;
+import com.yad.web.param.BuyTicketParam;
 import com.yad.web.service.CommodityPictureService;
 import com.yad.web.service.CommodityShareService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.yad.web.service.UcOrderService;
 import com.yad.web.utils.R;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -111,5 +115,18 @@ public class CommodityShareServiceImpl extends ServiceImpl<CommodityShareMapper,
             pictureService.save(new CommodityPicture(commodityVo.getId(),picture));
         }
         return  R.ok();
+    }
+
+
+    @Autowired
+    private UcOrderService orderService;
+    @Override
+    public boolean buyTicket(BuyTicketParam param) {
+        UcOrder order = new UcOrder();
+        order.setCommodityId(param.getTicketId());
+        order.setUserId(param.getUserId());
+        order.setCount(1);
+        order.setPrice(BigDecimal.ONE);
+        return orderService.save(order);
     }
 }

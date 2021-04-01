@@ -10,10 +10,19 @@
       </el-main>
     </el-container>
     <el-footer>
-      <div style="margin:0 auto;">
-          <audio  ref="audio" controls style="width:75%;">
-              您的浏览器不支持 audio 元素。
-          </audio>
+      <div style="">
+          <div style="width:50%;margin:0 auto;display:flex;">
+            <audio  ref="audio" controls style="width:80%" >
+                您的浏览器不支持 audio 元素。
+            </audio>
+            <div>
+                <div class="my-font" style="font-size:20px;font-bold">虞兮叹</div>
+                <div>闻人</div>
+            </div>
+            <div>
+                <add-to-list v-if="islogin && currItem!=null" :mId="currItem.id"></add-to-list>
+            </div>
+          </div>
       </div>
       
     </el-footer>
@@ -23,11 +32,9 @@
 <script>
 import Bar from "./components/Header";
 import Menu from "./components/Menu";
-import Player from "./components/Player";
-import PlayList from "./components/PlayList";
-import Lyric from "./components/Lyric";
-
+import AddToList from './components/AddToList'
 import DicoverMusic from "./views/discoverMusic/Discover";
+
 
 export default {
   name: "App",
@@ -35,24 +42,27 @@ export default {
     Bar,
     Menu,
     DicoverMusic,
-    Player,
-    PlayList,
-    Lyric
-
+    AddToList
   },
   data(){
     return{
-      audio:null
+      audio:null,
+      islogin:false,
+      currItem:null
     }
   },
   created() {
-    this.$message("没有备案，网速较慢，请耐心等待");
+    var userStr = sessionStorage.getItem('user')
+    if(userStr!=null && userStr!=''){
+      this.islogin = true
+    }
   },
 
   methods:{
-    play(e){
+    play(item){
       // console.log('play')
-      this.$refs.audio.src = e
+      this.currItem = item
+      this.$refs.audio.src = 'http://localhost:8080/'+item.filePath
       this.$refs.audio.play()
     }
   }
@@ -63,6 +73,9 @@ export default {
 <style  scoped>
 body {
   position: relative;
+}
+.my-font{
+  font-weight: bold;
 }
 #app {
   display: flex;
@@ -75,7 +88,7 @@ body {
   bottom: 0px;
   width: 100%;
   padding: 0px;
-  height: 60px;
+  height: 100px;
   z-index: 9999;
 }
 </style>>

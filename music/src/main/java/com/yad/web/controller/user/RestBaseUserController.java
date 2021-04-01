@@ -20,10 +20,9 @@ public class RestBaseUserController {
     private BaseUserService userService;
 
     @PostMapping("/update")
-    public R updateUser(@RequestBody BaseUser user, HttpServletRequest request){
+    public R updateUser(@RequestBody BaseUser user){
 
         boolean b = userService.updateById(user);
-        request.getSession().setAttribute("user",user);
 
         return  b ? R.ok():R.error();
     }

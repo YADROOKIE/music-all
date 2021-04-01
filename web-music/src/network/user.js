@@ -16,3 +16,11 @@ export function userRegister(data) {
         data
     })
 }
+
+export function userUpdate(data) {
+    return request({
+        url: '/share/base-user/rest/update',
+        method:'post',
+        data
+    })
+}

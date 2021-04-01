@@ -66,5 +66,6 @@ public class CommodityShare implements Serializable {
 
     private Date updateAt;
 
+    private String cover;
 
 }

@@ -1,7 +1,11 @@
 package com.yad.web.service;
 
+import com.yad.web.entity.BaseMusic;
 import com.yad.web.entity.SongListMusic;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.yad.web.utils.R;
+
+import java.util.List;
 
 /**
  * <p>
@@ -13,4 +17,7 @@ import com.baomidou.mybatisplus.extension.service.IService;
  */
 public interface SongListMusicService extends IService<SongListMusic> {
 
+    R addMusicToList(SongListMusic music);
+
+    List<BaseMusic> getListAllMusicByListId(Integer id);
 }

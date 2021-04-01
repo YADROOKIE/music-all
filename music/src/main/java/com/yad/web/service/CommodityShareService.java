@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.yad.web.entity.CommodityShare;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.yad.web.entity.vo.CommodityVo;
+import com.yad.web.param.BuyTicketParam;
 import com.yad.web.utils.R;
 
 import java.util.List;
@@ -26,4 +27,6 @@ public interface CommodityShareService extends IService<CommodityShare> {
     List<CommodityVo> getUserPublishComs(String id);
 
     R updateCommodity(CommodityVo commodityVo);
+
+    boolean buyTicket(BuyTicketParam param);
 }

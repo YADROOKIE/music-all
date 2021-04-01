@@ -16,10 +16,9 @@ public class WebConfigure implements WebMvcConfigurer {
         System.out.println(basePath+"basePath");
         String fileBasePath = "file:" + basePath + "/";
 
-        registry.addResourceHandler("/**").
-                //保证其他资源不会被屏蔽
-                        addResourceLocations("classpath:/META-INF/resources/").
-                //设置入我们的基础路径
-                        addResourceLocations(fileBasePath);
+        registry.addResourceHandler("/**")
+                .addResourceLocations("classpath:/static/")
+                .addResourceLocations("classpath:/META-INF/resources/")
+                .addResourceLocations(fileBasePath);;
     }
 }

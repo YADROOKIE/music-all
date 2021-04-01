@@ -5,7 +5,7 @@
       <h4>热门歌曲</h4>
       <el-carousel :interval="4000" type="card">
         <el-carousel-item v-for="item in hots" :key="item.id" >
-          <img :src="prefix+item.cover" :alt="item.musicName" @click="play(item.filePath)" />
+          <img :src="prefix+item.cover" :alt="item.musicName" @click="play(item)" />
         </el-carousel-item>
       </el-carousel>
 
@@ -45,7 +45,7 @@ export default {
         {id:2,imageUrl:'http://10.20.57.123:8080/cea87eab-349b-452d-a5cb-2c3ae115bdbc.jpg'}
       ],
       hots:[],
-      prefix:'http://localhost:8080/'
+      prefix:'http://localhost:8080/',
     };
   },
   created() {
@@ -56,9 +56,9 @@ export default {
     })
   },
   methods: {
-    play(filePath){
-      console.log(filePath)
-      this.$emit("play",this.prefix+filePath)
+    play(item){
+    
+      this.$emit("play",item)
     }
   }
 };

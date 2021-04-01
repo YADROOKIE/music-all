@@ -29,12 +29,12 @@ public class SongListMusic implements Serializable {
     /**
      * 歌单ID
      */
-    private Integer lId;
+    private Integer listId;
 
     /**
      * 音乐ID
      */
-    private Integer mId;
+    private Integer musicId;
 
     private Date createAt;
 
