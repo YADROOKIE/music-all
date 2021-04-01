@@ -1,25 +1,30 @@
 <template>
   <div class="box">
     <div class="mainBox">
-      <!-- 轮播图 -->
-      <h4>热门歌曲</h4>
-      <el-carousel :interval="4000" type="card">
-        <el-carousel-item v-for="item in hots" :key="item.id" >
-          <img :src="prefix+item.cover" :alt="item.musicName" @click="play(item)" />
-        </el-carousel-item>
-      </el-carousel>
+      <div style="width:20%;display:flex;">
+        <el-input v-model="input" placeholder="搜索">
+        </el-input>
+        <el-button icon="el-icon-search"></el-button>
+      </div>
+      <div>
+        <!-- 轮播图 -->
+        <h4>热门歌曲</h4>
+        <el-carousel :interval="4000" type="card">
+          <el-carousel-item v-for="item in hots" :key="item.id" >
+            <img :src="prefix+item.cover" :alt="item.musicName" @click="play(item)" />
+          </el-carousel-item>
+        </el-carousel>
+        <!-- 最新音乐 -->
+        <h4 class="newsongs">最新音乐</h4>
+        <NewSong />
+      </div>
+      <div>
+        
+      </div>
+    </div>
+    
+    <div>
 
-      <!-- 推荐歌单 -->
-      <!-- <h4>推荐歌单</h4> -->
-      <!-- <RecommendMusic :recommendResource="recommendResource" /> -->
-
-      <!-- 独家放送 -->
-      <!-- <h4>独家放送</h4> -->
-      <!-- <IndividuationMv /> -->
-
-      <!-- 最新音乐 -->
-      <h4 class="newsongs">最新音乐</h4>
-      <NewSong />
     </div>
   </div>
 </template>
@@ -40,10 +45,7 @@ export default {
   data() {
     return {
       recommendResource: [],
-      banners: [
-        {id:1,imageUrl:'http://10.20.57.123:8080/38578335-806d-4917-a4fb-d011963b6598.jpeg'},
-        {id:2,imageUrl:'http://10.20.57.123:8080/cea87eab-349b-452d-a5cb-2c3ae115bdbc.jpg'}
-      ],
+      input:'',
       hots:[],
       prefix:'http://localhost:8080/',
     };

@@ -1,6 +1,6 @@
 <template>
   <div >
-    <el-button @click="dialogFormVisible = true">加入歌单</el-button>
+    <el-button type="primary"  @click="dialogFormVisible = true">加入歌单</el-button>
     <el-dialog title="选择加入歌单" :visible.sync="dialogFormVisible">
           <el-table
             :data="list"
@@ -30,7 +30,7 @@
               label="操作"
               width="200">
               <template slot-scope="scope">
-                <el-button @click="handleClick(scope.row.id)"  >加入歌单</el-button>
+                <el-button   @click="handleClick(scope.row.id)"  >加入歌单</el-button>
               </template>
             </el-table-column>
           </el-table>

@@ -15,11 +15,11 @@
             <audio  ref="audio" controls style="width:80%" >
                 您的浏览器不支持 audio 元素。
             </audio>
-            <div>
-                <div class="my-font" style="font-size:20px;font-bold">虞兮叹</div>
-                <div>闻人</div>
+            <div v-if="currItem!=null"  style="margin-left:4px;">
+                <div class="my-font" style="font-size:20px;font-bold">{{currItem.musicName}}</div>
+                <div>{{currItem.singer}}</div>
             </div>
-            <div>
+            <div style="margin-left:4px;">
                 <add-to-list v-if="islogin && currItem!=null" :mId="currItem.id"></add-to-list>
             </div>
           </div>

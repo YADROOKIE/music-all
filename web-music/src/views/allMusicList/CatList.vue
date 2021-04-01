@@ -84,7 +84,7 @@
               width="200">
               <template slot-scope="scope">
                 <el-button @click="play(scope.row)"  >播放</el-button>
-                <el-button @click="handleClick(scope.row.id)"  >取消收藏</el-button>
+                <el-button @click="cancel(scope.row.id)"  >取消收藏</el-button>
               </template>
             </el-table-column>
           </el-table>
@@ -167,6 +167,9 @@ export default {
       },
       play(item){
         this.$emit("play",item)
+      },
+      cancel(id){
+        
       }
   }
 };
