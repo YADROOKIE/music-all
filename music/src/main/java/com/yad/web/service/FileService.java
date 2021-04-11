@@ -144,7 +144,7 @@ public class FileService {
         UserFile userFile = new UserFile() ;
         userFile.setType(fileType);
         userFile.setName(file.getOriginalFilename());
-        userFile.setFId(meta.getId());
+        userFile.setfId(meta.getId());
         userFile.setParent(pid);
         userFile.setUserId(uid);
         userFileService.save(userFile);

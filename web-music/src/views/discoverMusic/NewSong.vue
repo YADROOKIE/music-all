@@ -9,6 +9,7 @@
         @mousemove="showShadow(index)"
         @mouseleave="closeShadow(index)"
         @dblclick="open(index)"
+        @click="play(item)"
       >
         <div class="number">{{ index + 1 }}</div>
         <div class="title">
@@ -16,25 +17,14 @@
         </div>
 
         <div class="mess">
-          <span class="itemName" @click="enterAlbum(item.id)">
+          <span class="itemName">
             {{ item.musicName }}
           </span>
           
           <div class="bottom">
-            <span class="itemName" @click="enterAlbum(item.id)">
-            2333
+            <span class="itemName" >
+            {{ item.singer }}
           </span>
-            <!-- <span
-              v-for="(items, index1) in item.song.album.artists"
-              :key="index1"
-              class="artistsName"
-              @click="enterArtists(items.id)"
-            >
-              {{ items.name }}
-              <span v-if="index1 - 0 != item.song.album.artists.length - 1"
-                >/</span
-              >
-            </span> -->
           </div>
         </div>
       </div>
@@ -69,6 +59,9 @@ export default {
     });
   },
   methods: {
+    play(item){
+      this.$emit("play",item)
+    },
     // 进入专辑页面
     enterAlbum(id) {
       this.$router.push({

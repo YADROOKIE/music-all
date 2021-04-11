@@ -14,6 +14,7 @@ export default {
   name: "Menu",
   data() {
     return {
+      admin:{link:'/admin',name:'管理资源'},
       list: [
         {
           link: "/individuation",
@@ -31,13 +32,16 @@ export default {
         {
           link: "/new-songs",
           name: "我的订单"
-        },
-        {
-          link: "/artist-list",
-          name: "浏览记录"
         }
+        // ,
+        // {
+        //   link: "/artist-list",
+        //   name: "浏览记录"
+        // }
       ]
     };
+  },
+  created(){
   }
 };
 </script>

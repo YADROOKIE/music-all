@@ -3,6 +3,7 @@ package com.yad.web.service.impl;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.yad.web.entity.BaseMusic;
 import com.yad.web.entity.SongListMusic;
+import com.yad.web.entity.vo.BaseMusicVo;
 import com.yad.web.mapper.SongListMusicMapper;
 import com.yad.web.service.BaseMusicService;
 import com.yad.web.service.SongListMusicService;
@@ -42,16 +43,20 @@ public class SongListMusicServiceImpl extends ServiceImpl<SongListMusicMapper, S
     private BaseMusicService musicService;
 
     @Override
-    public List<BaseMusic> getListAllMusicByListId(Integer id) {
+    public List<BaseMusicVo> getListAllMusicByListId(Integer id) {
         QueryWrapper<SongListMusic> wrapper = new QueryWrapper<>();
         wrapper.eq("list_id", id);
         List<SongListMusic> list = this.list(wrapper);
 
-        List<BaseMusic> result = new ArrayList<>();
+        List<BaseMusicVo> result = new ArrayList<>();
         for (SongListMusic songListMusic : list) {
-            BaseMusic music = musicService.getById(songListMusic.getId());
-            result.add(music);
+            BaseMusic music = musicService.getById(songListMusic.getMusicId());
+            BaseMusicVo vo = new BaseMusicVo();
+            vo.setMusic(music);
+            vo.setSid(songListMusic.getId());
+            result.add(vo);
         }
+        System.out.println(result);
         return result;
     }
 }

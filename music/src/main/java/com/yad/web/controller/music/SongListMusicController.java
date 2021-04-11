@@ -3,6 +3,7 @@ package com.yad.web.controller.music;
 
 import com.yad.web.entity.BaseMusic;
 import com.yad.web.entity.SongListMusic;
+import com.yad.web.entity.vo.BaseMusicVo;
 import com.yad.web.service.SongListMusicService;
 import com.yad.web.utils.R;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,13 +45,14 @@ public class SongListMusicController {
         if (id==null){
             return  R.error();
         }
+        System.out.println(id);
         boolean b = songListMusicService.removeById(id);
         return  b ? R.ok() : R.error();
     }
 
     @GetMapping("/list/{id}")
     public  R getListAllMusicByListId(@PathVariable Integer id  ){
-        List<BaseMusic> list = songListMusicService.getListAllMusicByListId(id);
+        List<BaseMusicVo> list = songListMusicService.getListAllMusicByListId(id);
         return  R.ok().data("list",list);
     }
 }

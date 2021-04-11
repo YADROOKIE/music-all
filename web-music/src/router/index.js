@@ -17,7 +17,7 @@ const AllMvList = () => import('../views/mvList/AllMvList.vue')
 const NewSongs = () => import('../views/newSongs/NewSongs.vue')
 const Album = () => import('../views/Album/Album.vue')
 const Search = () => import('../views/Search/Search.vue')
-
+const Admin = ()=> import('../views/admin/Admin.vue')
 
 
 
@@ -51,7 +51,8 @@ const routes = [
   { path: '/mv-list', component: AllMvList, name: 'AllMvList' },
   { path: '/new-songs', component: NewSongs, name: 'NewSongs' },
   { path: '/album', component: Album, name: 'Album' },
-  { path: '/search', component: Search, name: 'Search' }
+  { path: '/search', component: Search, name: 'Search' },
+  { path: '/admin', component: Admin, name: 'Admin' }
 
 
 ]

@@ -26,7 +26,7 @@ public class UserSongListServiceImpl extends ServiceImpl<UserSongListMapper, Use
     @Override
     public boolean removeSongList(Integer id) {
         QueryWrapper<SongListMusic> wrapper = new QueryWrapper<>();
-        wrapper.eq("l_id",id);
+        wrapper.eq("list_id",id);
         songListMusicService.remove(wrapper);
 
 

@@ -11,4 +11,21 @@ public class UserLoginVo {
         this.stuNo = stuNo;
         this.password =password;
     }
+
+	public String getStuNo() {
+		return stuNo;
+	}
+
+	public void setStuNo(String stuNo) {
+		this.stuNo = stuNo;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+    
 }

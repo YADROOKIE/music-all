@@ -19,21 +19,12 @@
       </el-col>
 
       <el-col :span="5" class="searchBox">
-        <el-input
-          placeholder="请输入内容"
-          v-model="input"
-          @keyup.enter.native="goSearch(input)"
-        >
-          <el-button
-            slot="append"
-            icon="el-icon-search"
-            @click="goSearch(input)"
-          ></el-button>
-        </el-input>
+        哈哈哈哈哈音乐网站
       </el-col>
 
       <el-col :span="12" class="loginBox">
         <div >
+          
           <el-avatar icon="el-icon-user-solid" v-if="user==null" ></el-avatar>
           <el-avatar v-else :src="user.avatar"></el-avatar>
         </div>
@@ -42,7 +33,8 @@
           <span class="login" @click="openlogin" >登录</span>
           <span class="logon" @click="open">注册</span>
         </div>
-        <div v-else>
+        <div v-else> 
+            <button v-if="user!=null && user.stuNo=='admin'" @click="admin()">管理</button>
             <span  >{{user.name}}</span>
             <span class="login" style="color:grey"  @click="logout">退出</span>
         </div>
@@ -177,6 +169,9 @@ export default {
     },
     forward() {
       this.$router.go(1);
+    },
+    admin(){
+      this.$router.push('Admin')
     }
   },
 

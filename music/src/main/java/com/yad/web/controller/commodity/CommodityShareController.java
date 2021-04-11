@@ -2,14 +2,12 @@ package com.yad.web.controller.commodity;
 
 
 import com.yad.web.entity.BaseUser;
+import com.yad.web.entity.CommodityShare;
 import com.yad.web.entity.vo.CommodityVo;
 import com.yad.web.service.CommodityShareService;
 import com.yad.web.utils.R;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -21,6 +19,7 @@ import javax.servlet.http.HttpServletRequest;
  * @author yad
  * @since 2020-12-24
  */
+@CrossOrigin
 @RestController
 @RequestMapping("/share/commodity/rest")
 public class CommodityShareController {
@@ -28,27 +27,11 @@ public class CommodityShareController {
     private CommodityShareService commodityShareService;
 
     @PostMapping("/add")
-    public R addCommodity(@RequestBody CommodityVo commodityVo, HttpServletRequest request){
-        BaseUser user = (BaseUser) request.getSession().getAttribute("user");
-        if (user==null){
-            return  R.error().message("未登录");
-        }
-        System.out.println(commodityVo);
-        commodityVo.setUserId(user.getId());
-        R r  = commodityShareService.addCommodity(commodityVo);
-        return  r;
+    public R addCommodity(@RequestBody CommodityShare commodityShare){
+        boolean save = commodityShareService.save(commodityShare);
+
+        return  save? R.ok() :R.error();
     }
 
-    @PostMapping("/update")
-    public R updateCommodity(@RequestBody CommodityVo commodityVo, HttpServletRequest request){
-        BaseUser user = (BaseUser) request.getSession().getAttribute("user");
-        if (user==null){
-            return  R.error().message("未登录");
-        }
-        System.out.println(commodityVo);
-        commodityVo.setUserId(user.getId());
-        R r  = commodityShareService.updateCommodity(commodityVo);
-        return  r;
-    }
 }
 

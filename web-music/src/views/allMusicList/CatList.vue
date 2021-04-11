@@ -34,7 +34,7 @@
               width="200">
               <template slot-scope="scope">
                 <el-button @click="loadListMusic(scope.row.id)"  >查看歌曲</el-button>
-                <el-button  >删除</el-button>
+                <el-button @click="deleteListMusic(scope.row.id)" >删除</el-button>
               </template>
             </el-table-column>
           </el-table>
@@ -64,17 +64,17 @@
             stripe
             style="width: 100%">
             <el-table-column
-              prop="id"
+              prop="sid"
               label="ID"
               width="180">
             </el-table-column>
             <el-table-column
-              prop="musicName"
+              prop="music.musicName"
               label="歌区名称"
               width="180">
             </el-table-column>
             <el-table-column
-              prop="singer"
+              prop="music.singer"
               label="歌手">
             </el-table-column>
 
@@ -83,8 +83,8 @@
               label="操作"
               width="200">
               <template slot-scope="scope">
-                <el-button @click="play(scope.row)"  >播放</el-button>
-                <el-button @click="cancel(scope.row.id)"  >取消收藏</el-button>
+                <el-button @click="play(scope.row.music)"  >播放</el-button>
+                <el-button @click="cancel(scope.row.sid)"  >取消收藏</el-button>
               </template>
             </el-table-column>
           </el-table>
@@ -92,7 +92,7 @@
             <el-button @click="dialogFormVisible = false">取 消</el-button>
             <el-button type="primary" @click="dialogFormVisible = false">确 定</el-button>
         </div>
-    </el-dialog>
+          </el-dialog>
     </div>
 
   </div>
@@ -103,7 +103,7 @@
 
 
 <script>
-import {addUserSongList ,getUserSongList,getListAllMusic} from '../../network/userSongList.js'
+import {addUserSongList ,getUserSongList,getListAllMusic,cancelSongList,deleteUserSongList} from '../../network/userSongList.js'
 export default {
   name: "CatList",
   components: {
@@ -122,7 +122,8 @@ export default {
       dialogVisible:false,
       form:{},
       list:[],
-      songList:[]
+      songList:[],
+      tempId:null
     };
   },
   methods: {
@@ -159,6 +160,7 @@ export default {
         })
       },
       loadListMusic(id){
+        this.tempId = id
         getListAllMusic(id).then(res=>{
           console.log(res)
           this.songList = res.data.data.list
@@ -168,8 +170,27 @@ export default {
       play(item){
         this.$emit("play",item)
       },
-      cancel(id){
-        
+      cancel(id){ 
+          cancelSongList(id).then(res=>{
+              if(res.data.code==20000){
+                this.$message({
+                    message: "取消收藏",
+                    type: "warning"
+                });
+                this.loadListMusic(this.tempId)
+              }
+          })
+      },
+      deleteListMusic(id){
+        deleteUserSongList(id).then(res=>{
+          if(res.data.code==20000){
+                this.$message({
+                    message: "删除歌单",
+                    type: "success"
+                });
+                this.loadList()
+              }
+        })
       }
   }
 };

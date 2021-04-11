@@ -2,6 +2,7 @@ package com.yad.web.service;
 
 import com.yad.web.entity.BaseMusic;
 import com.yad.web.entity.SongListMusic;
+import com.yad.web.entity.vo.BaseMusicVo;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.yad.web.utils.R;
 
@@ -19,5 +20,5 @@ public interface SongListMusicService extends IService<SongListMusic> {
 
     R addMusicToList(SongListMusic music);
 
-    List<BaseMusic> getListAllMusicByListId(Integer id);
+    List<BaseMusicVo> getListAllMusicByListId(Integer id);
 }

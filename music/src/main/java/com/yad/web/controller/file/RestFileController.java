@@ -22,6 +22,7 @@ import java.io.*;
 import java.util.Date;
 
 
+@CrossOrigin
 @RestController
 @RequestMapping(value ="/file")
 public class RestFileController {
@@ -64,7 +65,7 @@ public class RestFileController {
     @GetMapping("/user/get/{id}")
     public ResponseEntity<FileSystemResource> userGetFile(@PathVariable String id,HttpServletResponse response){
         UserFile userFile = userFileService.getById(id);
-        Meta meta = metaService.getById(userFile.getFId());
+        Meta meta = metaService.getById(userFile.getfId());
         File file = new File(meta.getPath());
         if (!file.exists()){
             return  null;

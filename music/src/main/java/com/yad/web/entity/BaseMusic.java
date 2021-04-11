@@ -65,5 +65,89 @@ public class BaseMusic implements Serializable {
 
     private Date createAt;
 
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
+	public String getMusicName() {
+		return musicName;
+	}
+
+	public void setMusicName(String musicName) {
+		this.musicName = musicName;
+	}
+
+	public String getType() {
+		return type;
+	}
+
+	public void setType(String type) {
+		this.type = type;
+	}
+
+	public String getSinger() {
+		return singer;
+	}
+
+	public void setSinger(String singer) {
+		this.singer = singer;
+	}
+
+	public String getCover() {
+		return cover;
+	}
+
+	public void setCover(String cover) {
+		this.cover = cover;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	public String getLyrics() {
+		return lyrics;
+	}
+
+	public void setLyrics(String lyrics) {
+		this.lyrics = lyrics;
+	}
+
+	public String getMusicLen() {
+		return musicLen;
+	}
+
+	public void setMusicLen(String musicLen) {
+		this.musicLen = musicLen;
+	}
+
+	public String getFilePath() {
+		return filePath;
+	}
+
+	public void setFilePath(String filePath) {
+		this.filePath = filePath;
+	}
+
+	public Date getCreateAt() {
+		return createAt;
+	}
+
+	public void setCreateAt(Date createAt) {
+		this.createAt = createAt;
+	}
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+
 
 }

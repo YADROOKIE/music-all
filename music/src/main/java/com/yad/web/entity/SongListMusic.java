@@ -38,5 +38,37 @@ public class SongListMusic implements Serializable {
 
     private Date createAt;
 
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
+	public Integer getListId() {
+		return listId;
+	}
+
+	public void setListId(Integer listId) {
+		this.listId = listId;
+	}
+
+	public Integer getMusicId() {
+		return musicId;
+	}
+
+	public void setMusicId(Integer musicId) {
+		this.musicId = musicId;
+	}
+
+	public Date getCreateAt() {
+		return createAt;
+	}
+
+	public void setCreateAt(Date createAt) {
+		this.createAt = createAt;
+	}
+
 
 }

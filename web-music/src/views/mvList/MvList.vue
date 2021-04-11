@@ -1,5 +1,10 @@
 <template>
   <div>
+      <div style="width:20%;display:flex;">
+        <el-input v-model="input" placeholder="搜索">
+        </el-input>
+        <el-button icon="el-icon-search" @click="search()"></el-button>
+      </div>
       <el-row :gutter="20">
         <el-col class="" :span="6" v-for="item  in list" :key="item.id">
           <div class="mborder">
@@ -14,6 +19,9 @@
           </div>
         </el-col>
       </el-row>
+    <div v-if="list.length==0">
+      没有任何结果
+    </div>
   </div>
 </template>
 
@@ -21,14 +29,15 @@
 
 <script>
 import {listTicket,buyTicket} from '../../network/ticket.js'
-
+import {ticketSearch}  from '../../network/search.js'
 export default {
 
   name: "MvList",
   data(){
     return{
       list:[],
-      param:{}
+      param:{},
+      input:''
     }
   },
   created(){
@@ -63,6 +72,18 @@ export default {
               type: "danger"
           });
         }
+      })
+    },
+    search(){
+      if(this.input==''){
+        listTicket().then(res=>{
+          console.log(res)
+          this.list = res.data.data.list 
+        })
+        return
+      }
+      ticketSearch(this.input).then(res=>{
+         this.list = res.data.data.list 
       })
     }
   }

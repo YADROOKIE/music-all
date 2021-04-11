@@ -8,6 +8,18 @@ export function addUserSongList(data) {
         data
     })
 }
+export function deleteUserSongList(id) {
+    return request({
+        url: '/web/user-song-list/delete/'+id,
+        method:'post'
+    })
+}
+export function cancelSongList(id) {
+    return request({
+        url: '/web/song-list-music/delete/'+id,
+        method:'post'
+    })
+}
 
 export function getUserSongList(id) {
     return request({
