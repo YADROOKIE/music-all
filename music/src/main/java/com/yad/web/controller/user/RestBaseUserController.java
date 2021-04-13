@@ -5,12 +5,15 @@ import com.yad.web.service.BaseUserService;
 import com.yad.web.utils.R;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 
 @CrossOrigin
 @RestController
@@ -37,5 +40,16 @@ public class RestBaseUserController {
     public  R userRegiser(@RequestBody BaseUser baseUser){
         boolean save = userService.save(baseUser);
         return  save ? R.ok() : R.error();
+    }
+
+    @GetMapping("/list")
+    public  R listUser(){
+        List<BaseUser> list = userService.list(null);
+        return  R.ok().data("list",list);
+    }
+
+    @PostMapping("/del/{id}")
+    public  R delUser(@PathVariable String id){
+        return  userService.removeById(id) ? R.ok():R.error();
     }
 }

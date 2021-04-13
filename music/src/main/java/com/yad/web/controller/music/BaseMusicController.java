@@ -29,6 +29,16 @@ public class BaseMusicController {
         boolean save = musicService.save(music);
         return   save ? R.ok() : R.error().message("添加失败");
     }
+    @PostMapping("/del/{id}")
+    public  R delMusic(@PathVariable Integer id){
+        return  musicService.removeById(id) ? R.ok() : R.error();
+    }
+
+    @GetMapping("/list")
+    public  R MusicList(){
+        List<BaseMusic> list = musicService.list(null);
+        return  R.ok().data("list",list );
+    }
 
     @GetMapping("/{id}")
     public  R  getMusic(@PathVariable("id") Integer id      ){

@@ -15,6 +15,8 @@ public class WebConfigure implements WebMvcConfigurer {
         String basePath = new File("file").getAbsolutePath();
         System.out.println(basePath+"basePath");
         String fileBasePath = "file:" + basePath + "/";
+        registry.addResourceHandler("/admin/**")
+                .addResourceLocations("classpath:admin/");
 
         registry.addResourceHandler("/**")
                 .addResourceLocations("classpath:/static/")
